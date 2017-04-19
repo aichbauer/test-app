@@ -27,6 +27,7 @@ jobs:
         args:
           - -exc
           - |
+            bundle install
             rspec
 - name: deploy-stage
   serial: true
