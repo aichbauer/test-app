@@ -1,6 +1,6 @@
 FROM ruby:2.4.0-alpine
 
-RUN sudo apt-get install build-essential
+RUN apk add --no-cache build-base
 
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
