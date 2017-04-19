@@ -29,6 +29,8 @@ jobs:
           - |
             bundle install
             rspec
+            brakeman -z
+
 - name: deploy-stage
   serial: true
   plan:
