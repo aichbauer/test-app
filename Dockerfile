@@ -1,11 +1,11 @@
-FROM ruby:2.4.0-alpine
+FROM ruby:2.3.0
 
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 
 COPY Gemfile* /usr/src/app/
 
-RUN bundle update
+RUN gem install bundler
 RUN bundle install
 
 COPY . /usr/src/app
