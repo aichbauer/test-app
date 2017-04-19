@@ -1,4 +1,6 @@
 FROM ruby:2.3.0
+RUN apt-get update
+RUN apt-get install libgmp-dev
 
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
