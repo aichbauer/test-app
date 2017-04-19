@@ -27,9 +27,34 @@ jobs:
         args:
           - -exc
           - |
+            apt-get update -qq && apt-get install -y build-essential nodejs
             bundle install
             rspec
-            brakeman -z
+
+- name: security-check-stage
+  plan:
+  - get: git-repository
+    trigger: true
+  - task: security-check
+    config:
+      platform: linux
+
+      inputs:
+      - name: git-repository
+
+      image_resource:
+        type: docker-image
+        source: { repository: ruby, tag: 2.3.0 }
+
+      run:
+        path: sh
+        dir: git-repository
+        args:
+          - -exc
+          - |
+            apt-get update -qq && apt-get install -y build-essential nodejs
+            bundle install
+            bundle exec brakeman -z
 
 - name: deploy-stage
   serial: true
